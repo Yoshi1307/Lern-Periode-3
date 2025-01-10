@@ -9,8 +9,8 @@
 
 ## 10.1.2025
 
-- [ ] ...
-- [ ] ...
+- [ ] Windows-Forms ausprobieren und vertraut machen damit
+- [ ] Find the Button programmieren
 
 ✍️ Heute habe ich... (50-100 Wörter)
 
