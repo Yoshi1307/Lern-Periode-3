@@ -9,12 +9,15 @@
 
 ## 10.1.2025
 
-- [ ] Windows-Forms ausprobieren und vertraut machen damit
-- [ ] Pingpong programmieren
+- [X] Windows-Forms ausprobieren und vertraut machen damit
+- [X] Pingpong programmieren
 
-✍️ Heute habe ich... (50-100 Wörter)
+✍️ Heute habe ich zu beginn einfach eine Datei erstellt und rumprobiert um herauszufinden wie das WinForms funktioniert. Danach habe ich ein Tutorial für ein "Ping Pong geschaut und es nachprogrammiert. So habe ich mich mit dem Programm vertrauter gemacht und verstehe jetzt mehr. Das Programm kann ich noch nicht starten da es irgendeinen Fehler hat, bei dem ich nicht weis wie ich ihn beheben muss. 
 
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
-## ...
-
+## 17.1.2025
+- [ ] Fehler beheben
+- [ ] Neues Projekt Memory
+- [ ] Layout machen
+- [ ] beginnen zu coden 
