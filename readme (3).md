@@ -18,6 +18,6 @@
 
 ## 17.1.2025
 - [ ] Fehler beheben
-- [ ] Neues Projekt Memory
+- [ ] Neues Projekt Hangman
 - [ ] Layout machen
 - [ ] beginnen zu coden 
