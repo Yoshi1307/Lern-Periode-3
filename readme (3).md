@@ -17,7 +17,16 @@
 ☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
 
 ## 17.1.2025
-- [ ] Fehler beheben
-- [ ] Neues Projekt Hangman
-- [ ] Layout machen
-- [ ] beginnen zu coden 
+- [X] Fehler beheben
+- [X] Neues Projekt Hangman
+- [X] Layout machen
+- [ ] beginnen zu coden
+
+Heute habe ich damit begonnen meinen Fehler zu beheben. Dafür musste ich hauptcode etwas umbennenen und beim anderen einfügen. Jetzt kann ich das Programm zwar starten, aber der Spieler wird nicht angezeigt. Ich habe rumprobiert und habe keine lösung gefunden, also begann ich mit dem nächsten Projekt. Für das Hangman habe ich bis jetzt das Layout.
+![grafik](https://github.com/user-attachments/assets/690b1a9d-f4b4-47e1-b31e-b02c0a26923b)
+
+## 24.1.2025
+- [ ] Fehler beheben dass man aufs Layout zugreifen kann
+- [ ] Code schreiben zum auftauchen der "Hangmans"
+- [ ] Auswahl vom Wort Coden
+
