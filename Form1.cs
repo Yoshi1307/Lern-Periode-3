@@ -91,7 +91,7 @@ namespace WinForms_Lp3
 
         }
 
-        private void KeyisUp (object sender, KeyEventArgs e)
+        private void OnKeyUp (object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down)
             {
@@ -103,7 +103,7 @@ namespace WinForms_Lp3
             }
         }
 
-        private void KeyIsDown(object sender, KeyEventArgs e)
+        private void OnKeyDown (object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down)
             {

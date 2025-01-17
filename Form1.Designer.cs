@@ -42,7 +42,7 @@
             // Spieler
             // 
             Spieler.Image = Properties.Resources.player;
-            Spieler.Location = new Point(12, 163);
+            Spieler.Location = new Point(25, 163);
             Spieler.Name = "Spieler";
             Spieler.Size = new Size(30, 120);
             Spieler.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -59,11 +59,11 @@
             Computer.TabIndex = 1;
             Computer.TabStop = false;
             // 
-            // Ball
+            // ball
             // 
-            ball.Image = (Image)resources.GetObject("Ball.Image");
+            ball.Image = (Image)resources.GetObject("ball.Image");
             ball.Location = new Point(385, 165);
-            ball.Name = "Ball";
+            ball.Name = "ball";
             ball.Size = new Size(40, 40);
             ball.SizeMode = PictureBoxSizeMode.StretchImage;
             ball.TabIndex = 2;
@@ -87,8 +87,8 @@
             DoubleBuffered = true;
             Name = "Form1";
             Text = "Player: 0 -- Computer: 0";
-            KeyDown += KeyUp;
-            KeyPress += KeyUp;
+            KeyDown += OnKeyDown;
+            KeyUp += OnKeyUp;
             ((System.ComponentModel.ISupportInitialize)Spieler).EndInit();
             ((System.ComponentModel.ISupportInitialize)Computer).EndInit();
             ((System.ComponentModel.ISupportInitialize)ball).EndInit();
