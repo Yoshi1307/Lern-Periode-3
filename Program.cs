@@ -1,4 +1,4 @@
-namespace WinForms_Lp3
+namespace Hangman1
 {
     internal static class Program
     {

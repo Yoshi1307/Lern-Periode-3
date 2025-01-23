@@ -1,155 +1,101 @@
-using Microsoft.VisualBasic.Devices;
-using System.Numerics;
-using System.Windows.Forms;
-using System.Xml.Serialization;
+using System.Diagnostics.Tracing;
 
-namespace WinForms_Lp3
+namespace Hangman1
 {
     public partial class Form1 : Form
     {
-        int ballXspeed = 4;
-        int ballYspeed = 4;
-        int speed = 2;
-        Random rand = new Random();
-        bool goDown, goUp;
-        int Computer_speed_change = 50;
-        int SpielerPunkte = 0;
-        int ComputerPunkte = 0;
-        int SpielerSpeed = 8;
-        int[] i = { 5, 6, 8, 9 };
-        int[] j = { 10, 9, 8, 11, 12 };
+
+        private string wordToGuess;
+        private string wordToGuessDisplay;
+        private List<char> guessedLetters;
+        private int wrongGuesses;
 
         public Form1()
         {
             InitializeComponent();
+            StartNewGame();
         }
 
-        private void GameTimerEvent(object sender, EventArgs e)
-        {
-            ball.Top -= ballYspeed;
-            ball.Left -= ballXspeed;
-            this.Text = "Spieler Punkte: " + SpielerPunkte + " -- Computer Punkte: " + ComputerPunkte;
-            if (ball.Top < 0 || ball.Bottom > this.ClientSize.Height)
-            {
-                ballYspeed = -ballYspeed;
-            }
-            if (ball.Left < -2)
-            {
-                ball.Left = 300;
-                ballXspeed = -ballXspeed;
-                ComputerPunkte++;
-            }
-            if (ball.Right > this.ClientSize.Width + 2)
-            {
-                ball.Left = 300;
-                ballXspeed = -ballXspeed;
-                SpielerPunkte++;
-            }
-            if (Computer.Top <= 1)
-            {
-                Computer.Top = 0;
-            }
-            else if (Computer.Bottom >= this.ClientSize.Height)
-            {
-                Computer.Top = this.ClientSize.Height - Computer.Height;
-            }
-            if (ball.Top < Computer.Top + (Computer.Height / 2) && ball.Left > 300)
-            {
-                Computer.Top -= speed;
-            }
-            if (ball.Top > Computer.Top +   (Computer.Height / 2) && ball.Left > 300)
-            {
-                Computer.Top += speed;
-            }
-            Computer_speed_change -= 1;
-            if (Computer_speed_change < 0)
-            {
-                speed = i[rand.Next(i.Length)];
-                Computer_speed_change = 50;
-            }
-            if (goDown && Spieler.Top + Spieler.Height < this.ClientSize.Height)
-            {
-                Spieler.Top += SpielerSpeed;
-            }
-            if (goUp && Spieler.Top > 0)
-            {
-                Spieler.Top -= SpielerSpeed;
-            }
-            KollisionÜberprüfen(ball, Spieler, Spieler.Right + 5);
-            KollisionÜberprüfen(ball, Computer, Computer.Left - 35);
-            if (ComputerPunkte > 5)
-            {
-                GameOver("Sorry you lost the game");
-            }
-            else if (SpielerPunkte > 5)
-            {
-                GameOver("You Won this game");
-            }
-        }
-        private void SpielTimerEvent(object sender, EventArgs e)
+        private void txtGuess_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void OnKeyUp (object sender, KeyEventArgs e)
+        private void lblWrongGuesses_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Down)
-            {
-                goDown = true;
-            }
-            if (e.KeyCode == Keys.Up)
-            {
-                goUp = true;
-            }
+
         }
 
-        private void OnKeyDown (object sender, KeyEventArgs e)
+        private void StartNewGame()
         {
-            if (e.KeyCode == Keys.Down)
-            {
-                goDown = false;
-            }
-            if (e.KeyCode == Keys.Up)
-            {
-                goUp = false;
-            }
+            wordToGuess = GetRandomWord();
+            wordToGuessDisplay = new string('_', wordToGuess.Length);
+            guessedLetters = new List<char>();
+            wrongGuesses = 0;
+            lblWorldDisplay.Text = wordToGuessDisplay;
+            lblWrongGuesses.Text = "Wrong Guesses: " + wrongGuesses;
+            txtGuess.Text = "";
+            txtGuess.Focus();
+        }
+        private string GetRandomWord()
+        {
+            string[] words = { "Apfel", "Glanz", "Blume", "Sonne", "Eimer", "Zebra", "Welle", "Knopf", "Vogel", "Zange", "Blass", "Kamel" };
+            Random Random = new Random();
+            return words[Random.Next(words.Length)];
         }
 
-        private void KollisionÜberprüfen(PictureBox PicOne, PictureBox PicTwo, int offset)
+        private void btnGuess_Click(object sender, EventArgs e)
         {
-            if (PicOne.Bounds.IntersectsWith(PicTwo.Bounds))
+            string guess = txtGuess.Text.ToLower();
+            if (guess.Length == 1 && char.IsLetter(guess[0]))
             {
-                PicOne.Left = offset;
-                int x = j[rand.Next(j.Length)];
-                int y = j[rand.Next(j.Length)];
-                if (ballXspeed < 0)
+                char guessedLetter = guess[0];
+                if (!guessedLetters.Contains(guessedLetter))
                 {
-                    ballXspeed = x;
-                }
-                else
-                {
-                    ballXspeed = -x;
-                }
-                if (ballYspeed < 0)
-                {
-                    ballYspeed = -y;
-                }
-                else
-                {
-                    ballYspeed = y;
+                    guessedLetters.Add(guessedLetter);
+                    if (wordToGuess.Contains(guessedLetter))
+                    {
+                        UpdateWordToGuessDisplay(guessedLetter);
+                    }
+                    else
+                    {
+                        wrongGuesses++;
+                        lblWrongGuesses.Text = "Wrong Guesses: " + wrongGuesses;
+                    }
+
+                    if (wrongGuesses >= 6)
+                    {
+                        MessageBox.Show("Game Over! The word was: " + wordToGuess);
+                        StartNewGame();
+                    }
+                    else if (wordToGuessDisplay == wordToGuess)
+                    {
+                        MessageBox.Show("Congratulations! You guessed the word: " + wordToGuess);
+                        StartNewGame();
+                    }
                 }
             }
+            txtGuess.Text = "";
+            txtGuess.Focus();
+
+        }
+        private void UpdateWordToGuessDisplay(char guessedLetter)
+        {
+            char[] wordToGuessDisplayArray = wordToGuessDisplay.ToCharArray();
+            for (int i = 0; i < wordToGuess.Length; i++)
+            {
+                if (wordToGuess[i] == guessedLetter)
+                {
+                    wordToGuessDisplayArray[i] = guessedLetter;
+                }
+            }
+            wordToGuessDisplay = new string(wordToGuessDisplayArray);
+            lblWorldDisplay.Text = wordToGuessDisplay;
         }
 
-        private void GameOver(string message)
+        private void btnNewGame_Click(object sender, EventArgs e)
         {
-            SpielTimer.Stop();
-            MessageBox.Show(message, "Says: ");
-            ComputerPunkte = 0;
-            SpielerPunkte = 0;
-            ballXspeed = ballYspeed = 4;
-            Computer_speed_change = 50;
-            SpielTimer.Start();
+            StartNewGame();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace WinForms_Lp3
+﻿namespace Hangman1
 {
     partial class Form1
     {
@@ -28,78 +28,110 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            Spieler = new PictureBox();
-            Computer = new PictureBox();
-            ball = new PictureBox();
-            SpielTimer = new System.Windows.Forms.Timer(components);
-            ((System.ComponentModel.ISupportInitialize)Spieler).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Computer).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ball).BeginInit();
+            lblWorldDisplay = new Label();
+            txtGuess = new TextBox();
+            textBox1 = new TextBox();
+            btnGuess = new Button();
+            label1 = new Label();
+            lblWrongGuesses = new Label();
+            btnNewGame = new Button();
             SuspendLayout();
             // 
-            // Spieler
+            // lblWorldDisplay
             // 
-            Spieler.Image = Properties.Resources.player;
-            Spieler.Location = new Point(25, 163);
-            Spieler.Name = "Spieler";
-            Spieler.Size = new Size(30, 120);
-            Spieler.SizeMode = PictureBoxSizeMode.StretchImage;
-            Spieler.TabIndex = 0;
-            Spieler.TabStop = false;
+            lblWorldDisplay.AutoSize = true;
+            lblWorldDisplay.Font = new Font("Microsoft YaHei", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblWorldDisplay.Location = new Point(450, 67);
+            lblWorldDisplay.Name = "lblWorldDisplay";
+            lblWorldDisplay.Size = new Size(82, 37);
+            lblWorldDisplay.TabIndex = 0;
+            lblWorldDisplay.Text = "_____";
             // 
-            // Computer
+            // txtGuess
             // 
-            Computer.Image = (Image)resources.GetObject("Computer.Image");
-            Computer.Location = new Point(745, 163);
-            Computer.Name = "Computer";
-            Computer.Size = new Size(30, 120);
-            Computer.SizeMode = PictureBoxSizeMode.StretchImage;
-            Computer.TabIndex = 1;
-            Computer.TabStop = false;
+            txtGuess.Font = new Font("Microsoft YaHei", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtGuess.Location = new Point(290, 168);
+            txtGuess.Name = "txtGuess";
+            txtGuess.Size = new Size(437, 44);
+            txtGuess.TabIndex = 1;
+            txtGuess.TextChanged += txtGuess_TextChanged;
             // 
-            // ball
+            // textBox1
             // 
-            ball.Image = (Image)resources.GetObject("ball.Image");
-            ball.Location = new Point(385, 165);
-            ball.Name = "ball";
-            ball.Size = new Size(40, 40);
-            ball.SizeMode = PictureBoxSizeMode.StretchImage;
-            ball.TabIndex = 2;
-            ball.TabStop = false;
+            textBox1.Font = new Font("Microsoft YaHei", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(146, 168);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(124, 44);
+            textBox1.TabIndex = 2;
+            textBox1.Text = "Eingabe ";
             // 
-            // SpielTimer
+            // btnGuess
             // 
-            SpielTimer.Enabled = true;
-            SpielTimer.Interval = 20;
-            SpielTimer.Tick += SpielTimerEvent;
+            btnGuess.Font = new Font("Microsoft YaHei", 14F, FontStyle.Bold);
+            btnGuess.Location = new Point(404, 241);
+            btnGuess.Name = "btnGuess";
+            btnGuess.Size = new Size(191, 52);
+            btnGuess.TabIndex = 3;
+            btnGuess.Text = "Probieren";
+            btnGuess.UseVisualStyleBackColor = true;
+            btnGuess.Click += btnGuess_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(426, 448);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 25);
+            label1.TabIndex = 4;
+            // 
+            // lblWrongGuesses
+            // 
+            lblWrongGuesses.AutoSize = true;
+            lblWrongGuesses.Font = new Font("Microsoft YaHei", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblWrongGuesses.Location = new Point(32, 334);
+            lblWrongGuesses.Name = "lblWrongGuesses";
+            lblWrongGuesses.Size = new Size(288, 37);
+            lblWrongGuesses.TabIndex = 5;
+            lblWrongGuesses.Text = "Falsche Versuche: 0";
+            lblWrongGuesses.Click += lblWrongGuesses_Click;
+            // 
+            // btnNewGame
+            // 
+            btnNewGame.Font = new Font("Microsoft YaHei", 14F, FontStyle.Bold);
+            btnNewGame.Location = new Point(290, 476);
+            btnNewGame.Name = "btnNewGame";
+            btnNewGame.Size = new Size(215, 63);
+            btnNewGame.TabIndex = 6;
+            btnNewGame.Text = "Neues Spiel";
+            btnNewGame.UseVisualStyleBackColor = true;
+            btnNewGame.Click += btnNewGame_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaptionText;
-            ClientSize = new Size(800, 450);
-            Controls.Add(ball);
-            Controls.Add(Computer);
-            Controls.Add(Spieler);
-            DoubleBuffered = true;
+            ClientSize = new Size(809, 656);
+            Controls.Add(btnNewGame);
+            Controls.Add(lblWrongGuesses);
+            Controls.Add(label1);
+            Controls.Add(btnGuess);
+            Controls.Add(textBox1);
+            Controls.Add(txtGuess);
+            Controls.Add(lblWorldDisplay);
             Name = "Form1";
-            Text = "Player: 0 -- Computer: 0";
-            KeyDown += OnKeyDown;
-            KeyUp += OnKeyUp;
-            ((System.ComponentModel.ISupportInitialize)Spieler).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Computer).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ball).EndInit();
+            Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private PictureBox Spieler;
-        private PictureBox Computer;
-        private PictureBox ball;
-        private System.Windows.Forms.Timer SpielTimer;
+        private Label lblWorldDisplay;
+        private TextBox txtGuess;
+        private TextBox textBox1;
+        private Button btnGuess;
+        private Label label1;
+        private Label lblWrongGuesses;
+        private Button btnNewGame;
     }
 }
