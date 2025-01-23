@@ -30,3 +30,4 @@ Heute habe ich damit begonnen meinen Fehler zu beheben. Dafür musste ich hauptc
 - [ ] Code schreiben zum auftauchen der "Hangmans"
 - [ ] Auswahl vom Wort Coden
 
+Heute habe ich damit begonnen den Fehler, dass man nicht aufs Layout zugreifen kann zu beheben. Weil ich es nicht hingekriegt habe, habe ich ein Neues Projekt gestartet und von vorne begonnen als Inspiration habe ich mir ein YT video angesehen und versucht es nachzucoden. 
